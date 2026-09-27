@@ -2,6 +2,10 @@
 
 Aplicação responsiva de gestão de chamados com painéis de administrador, técnico e cliente.
 
+## Design
+
+O layout, o design system (cores, tipografia e ícones) e os componentes estão no [Figma](https://www.figma.com/community/file/1506654636739959765/plataforma-de-chamados).
+
 ## Stack
 
 - [Next.js 16](https://nextjs.org) (App Router) com React 19 e TypeScript
@@ -36,6 +40,7 @@ Acesse [http://localhost:3000](http://localhost:3000).
 - **Formatação:** Prettier com indentação de 4 espaços. Ele também ordena os imports (pacotes, `@/`, relativos) e as classes do Tailwind.
 - **Imports:** use o alias `@/` (raiz do projeto) para importar de outras pastas, e `./` apenas para arquivos da mesma pasta.
 - **Design system:** cores, tamanhos de fonte e pesos ficam em [`app/theme.css`](app/theme.css). A paleta e a escala de tipografia padrão do Tailwind estão desativadas, então use apenas os tokens do design (ex.: `bg-blue-base`, `text-gray-200`, `text-md`).
+- **Ícones:** importe de [`components/icons.ts`](components/icons.ts), que reúne apenas os ícones do design. O ESLint bloqueia imports diretos de `lucide-react`.
 - **Rotas tipadas:** links para rotas que não existem geram erro de TypeScript.
 - **Commits:** mensagens em inglês no padrão [Conventional Commits](https://www.conventionalcommits.org/) (ex.: `feat: add ticket list`).
 
