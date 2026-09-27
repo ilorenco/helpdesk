@@ -6,6 +6,7 @@ const avatarVariants = tv({
     base: "flex shrink-0 items-center justify-center rounded-full bg-blue-dark text-sm text-gray-600",
     variants: {
         size: {
+            sm: "size-5 text-xxs font-normal uppercase",
             md: "size-8",
             lg: "size-10",
         },
