@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     title: "Entrar",
 };
 
-export default function LoginPage() {
+export default function SignInPage() {
     return (
         <div className="flex w-full max-w-100 flex-col gap-3">
             <Card className="p-6 lg:p-7">

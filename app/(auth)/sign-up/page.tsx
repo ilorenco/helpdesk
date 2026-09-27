@@ -49,7 +49,7 @@ export default function SignUpPage() {
                     <h2 className="text-md font-bold text-gray-200">Já tem uma conta?</h2>
                     <p className="text-xs text-gray-300">Entre agora mesmo</p>
                 </div>
-                <Link href="/login" className={buttonVariants({ variant: "secondary" })}>
+                <Link href="/sign-in" className={buttonVariants({ variant: "secondary" })}>
                     Acessar conta
                 </Link>
             </Card>
