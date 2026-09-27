@@ -22,6 +22,7 @@ Responsive ticket management application (helpdesk) with three role-based dashbo
 - TypeScript
 - Tailwind CSS v4
 - Tailwind Variants (`tailwind-variants`) for component variants
+- Base UI (`@base-ui/react`) for unstyled interactive primitives
 - Lucide icons (`lucide-react`)
 - ESLint
 - Prettier
@@ -46,6 +47,9 @@ Responsive ticket management application (helpdesk) with three role-based dashbo
 - Use only the design system colors defined in `app/theme.css` (e.g. `bg-blue-base`, `text-gray-200`, `bg-feedback-done`). Tailwind's default palette is disabled, and the gray scale is inverted compared to Tailwind's: `gray-100` is the darkest and `gray-600` the lightest.
 - Typography uses Lato (400 and 700, normal and italic; italic is used for input helper text) and the design system sizes in `app/theme.css`: `text-xl` (24px), `text-lg` (20px), `text-md` (16px), `text-sm` (14px), `text-xs` (12px), `text-xxs` (10px). These replace Tailwind's scale (no `text-base`, `text-2xl`, etc.). `text-xl`, `text-lg`, and `text-xxs` are bold by default (`text-xxs` also has 6% letter spacing); `text-xxs` is always paired with `uppercase`. Only `font-normal` and `font-bold` exist.
 - Border radius uses the design system scale in `app/theme.css`: `rounded-sm` (5px: buttons, tags, menus), `rounded-md` (10px: cards, tables, modals), `rounded-lg` (20px: content panels), plus `rounded-full` for avatars and status tags. Tailwind's default radius scale is disabled.
+- The only shadow is `shadow-md` (dropdowns) from `app/theme.css`; Tailwind's default shadow scales (`shadow`, `inset-shadow`, `drop-shadow`, `text-shadow`) are disabled.
+- Build menus, popovers, dialogs, selects and similar interactive primitives with Base UI (`@base-ui/react`) and style them with Tailwind; don't hand-roll focus management, keyboard navigation or positioning. Its docs ship with the package in `node_modules/@base-ui/react/docs/`. Dropdown styles are shared in `components/ui/dropdown.ts`.
+- Each role has its own route segment (`app/admin`, later `app/client` and `app/technician`), whose layout renders `DashboardShell` with that role's menu.
 - Each page exports `metadata` with only its own name as `title` (e.g. `title: "Chamados"`); the root layout's `title.template` renders it as "Chamados | Helpdesk".
 - Build component variants with `tv` from `@/lib/variants`, which teaches the class merger the design system sizes (without it, `text-xxs` is read as a color and dropped). ESLint blocks importing `tv` from `tailwind-variants` directly.
 - Import icons only from `@/components/icons`, which re-exports the Lucide icons from the Figma "Ícones" frame (plus the `LucideIcon` type). ESLint blocks importing from `lucide-react` directly. Don't add icons that aren't in the design; if the design gains one, export it from `components/icons.ts`. Size icons with Tailwind (`size-4`) and color them with `text-*` classes; they inherit `currentColor`.

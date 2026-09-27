@@ -2,6 +2,8 @@
 @import "./theme.css";
 
 body {
+    /* Lets Base UI backdrops cover the whole visual viewport on iOS Safari */
+    position: relative;
     background: var(--color-gray-600);
     color: var(--color-gray-200);
 }
