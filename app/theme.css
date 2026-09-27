@@ -1,14 +1,14 @@
 @theme {
-    /* Disable Tailwind's default palette so only the design system colors exist */
+    /* Colors
+       Disable Tailwind's default palette so only the design system colors exist */
     --color-*: initial;
 
-    --color-white: #ffffff;
-    --color-black: #000000;
-
+    /* Brand */
     --color-blue-dark: #2e3da3;
     --color-blue-base: #5165e1;
     --color-blue-light: #8996eb;
 
+    /* Grayscale */
     --color-gray-100: #151619;
     --color-gray-200: #1e2024;
     --color-gray-300: #535964;
@@ -16,41 +16,51 @@
     --color-gray-500: #e3e5e8;
     --color-gray-600: #f9fafa;
 
+    /* Feedback */
     --color-feedback-danger: #d03e3e;
     --color-feedback-open: #cc3d6a;
     --color-feedback-progress: #355ec5;
     --color-feedback-done: #508b26;
 
-    /* Disable Tailwind's default scales so only the design system sizes and weights exist */
+    /* Typography
+       Disable Tailwind's default scales so only the design system sizes and weights exist */
     --text-*: initial;
     --font-weight-*: initial;
 
+    /* Font Weight */
     --font-weight-normal: 400;
     --font-weight-bold: 700;
 
+    /* Text Xl */
     --text-xl: 24px;
     --text-xl--line-height: 1.4;
     --text-xl--font-weight: 700;
 
+    /* Text Lg */
     --text-lg: 20px;
     --text-lg--line-height: 1.4;
     --text-lg--font-weight: 700;
 
+    /* Heading Md */
     --text-md: 16px;
     --text-md--line-height: 1.4;
 
+    /* Text Sm */
     --text-sm: 14px;
     --text-sm--line-height: 1.4;
 
+    /* Text Xs */
     --text-xs: 12px;
     --text-xs--line-height: 1.4;
 
-    /* Always used with `uppercase` */
+    /* Text Xxs (always used with `uppercase`) */
     --text-xxs: 10px;
     --text-xxs--line-height: 1.4;
     --text-xxs--font-weight: 700;
+    --text-xxs--letter-spacing: 0.06em;
 }
 
+/* Font Family */
 @theme inline {
     --font-sans: var(--font-lato);
 }
