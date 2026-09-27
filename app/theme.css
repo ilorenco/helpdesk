@@ -61,6 +61,13 @@
     --text-xxs--line-height: 1.4;
     --text-xxs--font-weight: 700;
     --text-xxs--letter-spacing: 0.06em;
+
+    /* Border Radius
+       Disable Tailwind's default scale so only the design system radii exist */
+    --radius-*: initial;
+    --radius-sm: 5px;
+    --radius-md: 10px;
+    --radius-lg: 20px;
 }
 
 /* Font Family */

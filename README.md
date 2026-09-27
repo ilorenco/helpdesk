@@ -39,7 +39,7 @@ Acesse [http://localhost:3000](http://localhost:3000).
 
 - **Formatação:** Prettier com indentação de 4 espaços. Ele também ordena os imports (pacotes, `@/`, relativos) e as classes do Tailwind.
 - **Imports:** use o alias `@/` (raiz do projeto) para importar de outras pastas, e `./` apenas para arquivos da mesma pasta.
-- **Design system:** cores, tamanhos de fonte e pesos ficam em [`app/theme.css`](app/theme.css). A paleta e a escala de tipografia padrão do Tailwind estão desativadas, então use apenas os tokens do design (ex.: `bg-blue-base`, `text-gray-200`, `text-md`).
+- **Design system:** cores, tamanhos de fonte, pesos e raios de borda ficam em [`app/theme.css`](app/theme.css). A paleta, a escala de tipografia e a escala de raios padrão do Tailwind estão desativadas, então use apenas os tokens do design (ex.: `bg-blue-base`, `text-gray-200`, `text-md`, `rounded-md`).
 - **Variantes:** use o `tv` de [`lib/variants.ts`](lib/variants.ts), que já conhece os tamanhos de fonte do design (ex.: `text-xxs`). O ESLint bloqueia importar o `tv` direto de `tailwind-variants`.
 - **Ícones:** importe de [`components/icons.ts`](components/icons.ts), que reúne apenas os ícones do design. O ESLint bloqueia imports diretos de `lucide-react`.
 - **Rotas tipadas:** links para rotas que não existem geram erro de TypeScript.
