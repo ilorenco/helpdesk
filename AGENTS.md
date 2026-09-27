@@ -47,3 +47,15 @@ Responsive ticket management application (helpdesk) with three role-based dashbo
 - Each page exports `metadata` with only its own name as `title` (e.g. `title: "Chamados"`); the root layout's `title.template` renders it as "Chamados | Helpdesk".
 - Import icons only from `@/components/icons`, which re-exports the Lucide icons from the Figma "Ícones" frame (plus the `LucideIcon` type). ESLint blocks importing from `lucide-react` directly. Don't add icons that aren't in the design; if the design gains one, export it from `components/icons.ts`. Size icons with Tailwind (`size-4`) and color them with `text-*` classes; they inherit `currentColor`.
 - Enforce role-based access on the server, not only by hiding UI elements.
+
+## Code Conventions
+
+- Name files and folders in kebab-case (`ticket-card.tsx`); the exported component stays PascalCase (`TicketCard`).
+- Write identifiers in English, including domain terms (`ticket`, `technician`, `client`) and route segments, since they become URLs (`app/tickets` → `/tickets`); user-facing text is in Portuguese (pt-BR).
+- Use names that say what a value is within its scope: `assignedTickets` over `data` or `result`, `isTicketClosed` over `flag`. Avoid vague names like `data`, `temp`, or `x`.
+- Keep functions and components focused on one responsibility. Extract a block when it has a clear purpose and earns a name, not before, and don't add abstractions or options for hypothetical future needs.
+- Keep logic out of the JSX, so the returned markup reads as a composition of tags: compute derived values above the `return`, and move them to `lib/` or a hook when they're domain rules, reused, or long. Screens hold only their data, state, handlers, and JSX. Simple conditionals and `.map` stay inline.
+- Put data access in `data/` (e.g. `@/data/tickets`), the Data Access Layer: each file starts with `import "server-only"`, performs the authorization checks, and is the only place that touches the database and secret environment variables.
+- Put pure helpers in `lib/` (safe to import on both server and client) and client hooks in `hooks/`. Keep constants used by a single file in that file; move them to `lib/` once they're shared.
+- Name a function `use*` only if it calls React hooks; logic that only transforms its inputs is a plain function.
+- Components are Server Components by default. Add `"use client"` only to the smallest component that needs state, effects, or browser APIs.
