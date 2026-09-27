@@ -44,7 +44,7 @@ export default function LoginPage() {
                     <h2 className="text-md font-bold text-gray-200">Ainda não tem uma conta?</h2>
                     <p className="text-xs text-gray-300">Cadastre agora mesmo</p>
                 </div>
-                <Link href="/signup" className={buttonVariants({ variant: "secondary" })}>
+                <Link href="/sign-up" className={buttonVariants({ variant: "secondary" })}>
                     Criar conta
                 </Link>
             </Card>
