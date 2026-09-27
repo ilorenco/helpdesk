@@ -8,6 +8,7 @@ const eslintConfig = defineConfig([
     ...nextTs,
     prettier,
     // Only the design system icons may be used: import them from @/components/icons.
+    // Variants must use the tv from @/lib/variants, which knows the design system tokens.
     {
         rules: {
             "no-restricted-imports": [
@@ -19,6 +20,12 @@ const eslintConfig = defineConfig([
                             message:
                                 "Import icons from @/components/icons (only the design system icons are allowed).",
                         },
+                        {
+                            name: "tailwind-variants",
+                            importNames: ["tv", "createTV", "cn", "cnMerge"],
+                            message:
+                                "Import tv from @/lib/variants (it is configured with the design system tokens).",
+                        },
                     ],
                     patterns: [
                         {
@@ -26,13 +33,18 @@ const eslintConfig = defineConfig([
                             message:
                                 "Import icons from @/components/icons (only the design system icons are allowed).",
                         },
+                        {
+                            group: ["tailwind-variants/*"],
+                            message:
+                                "Import tv from @/lib/variants (it is configured with the design system tokens).",
+                        },
                     ],
                 },
             ],
         },
     },
     {
-        files: ["components/icons.ts"],
+        files: ["components/icons.ts", "lib/variants.ts"],
         rules: {
             "no-restricted-imports": "off",
         },

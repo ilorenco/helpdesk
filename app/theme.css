@@ -1,4 +1,7 @@
 @theme {
+    /* Text sizes and radii named outside xs–xl (like `xxs`) must also be added to
+       lib/variants.ts, or the class merger won't recognize them */
+
     /* Colors
        Disable Tailwind's default palette so only the design system colors exist */
     --color-*: initial;

@@ -9,7 +9,7 @@ O layout, o design system (cores, tipografia e ícones) e os componentes estão 
 ## Stack
 
 - [Next.js 16](https://nextjs.org) (App Router) com React 19 e TypeScript
-- [Tailwind CSS v4](https://tailwindcss.com)
+- [Tailwind CSS v4](https://tailwindcss.com) com [Tailwind Variants](https://www.tailwind-variants.org) para variantes de componentes
 - [Lucide](https://lucide.dev) para ícones
 - ESLint, Prettier, husky, lint-staged e commitlint
 
@@ -40,6 +40,7 @@ Acesse [http://localhost:3000](http://localhost:3000).
 - **Formatação:** Prettier com indentação de 4 espaços. Ele também ordena os imports (pacotes, `@/`, relativos) e as classes do Tailwind.
 - **Imports:** use o alias `@/` (raiz do projeto) para importar de outras pastas, e `./` apenas para arquivos da mesma pasta.
 - **Design system:** cores, tamanhos de fonte e pesos ficam em [`app/theme.css`](app/theme.css). A paleta e a escala de tipografia padrão do Tailwind estão desativadas, então use apenas os tokens do design (ex.: `bg-blue-base`, `text-gray-200`, `text-md`).
+- **Variantes:** use o `tv` de [`lib/variants.ts`](lib/variants.ts), que já conhece os tamanhos de fonte do design (ex.: `text-xxs`). O ESLint bloqueia importar o `tv` direto de `tailwind-variants`.
 - **Ícones:** importe de [`components/icons.ts`](components/icons.ts), que reúne apenas os ícones do design. O ESLint bloqueia imports diretos de `lucide-react`.
 - **Rotas tipadas:** links para rotas que não existem geram erro de TypeScript.
 - **Commits:** mensagens em inglês no padrão [Conventional Commits](https://www.conventionalcommits.org/) (ex.: `feat: add ticket list`).
