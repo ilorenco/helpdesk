@@ -1,3 +1,7 @@
+"use client";
+
+// A client component so useId comes from the client tree: in Server Components the ids restart on
+// every request, and a page rendered on navigation could repeat an id its layout already used
 import { useId, type ComponentProps } from "react";
 
 import { CircleAlert } from "@/components/icons";
