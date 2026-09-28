@@ -1,5 +1,5 @@
-import { AdminTicketsTableSkeleton } from "@/components/admin-tickets-table";
-import { PageHeader } from "@/components/page-header";
+import { PageHeader } from "@/components/dashboard/page-header";
+import { AdminTicketsTableSkeleton } from "@/components/tickets/admin-tickets-table";
 
 export default function AdminTicketsLoading() {
     return (

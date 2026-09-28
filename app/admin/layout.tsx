@@ -1,4 +1,4 @@
-import { DashboardShell, type NavItem } from "@/components/dashboard-shell";
+import { DashboardShell, type NavItem } from "@/components/dashboard/dashboard-shell";
 import { BriefcaseBusiness, ClipboardList, Users, Wrench } from "@/components/icons";
 
 const navItems: NavItem[] = [

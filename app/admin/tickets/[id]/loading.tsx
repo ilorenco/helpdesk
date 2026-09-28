@@ -1,10 +1,10 @@
-import { PageHeader } from "@/components/page-header";
+import { PageHeader } from "@/components/dashboard/page-header";
 import {
     TicketDetailsColumns,
     TicketInfoCardSkeleton,
     TicketSummaryCardSkeleton,
-} from "@/components/ticket-details";
-import { TicketStatusActionsSkeleton } from "@/components/ticket-status-actions";
+} from "@/components/tickets/ticket-details";
+import { TicketStatusActionsSkeleton } from "@/components/tickets/ticket-status-actions";
 
 // Shown while the ticket loads. It also lets links to this dynamic route be prefetched, so
 // navigation starts right away instead of waiting for the server.

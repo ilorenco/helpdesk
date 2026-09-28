@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import { TicketStatusTag } from "@/components/ticket-status-tag";
+import { TicketStatusTag } from "@/components/tickets/ticket-status-tag";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { UserLabel, UserLabelSkeleton } from "@/components/user-label";

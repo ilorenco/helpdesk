@@ -40,6 +40,7 @@ Acesse [http://localhost:3000](http://localhost:3000).
 
 - **Formatação:** Prettier com indentação de 4 espaços. Ele também ordena os imports (pacotes, `@/`, relativos) e as classes do Tailwind.
 - **Imports:** use o alias `@/` (raiz do projeto) para importar de outras pastas, e `./` apenas para arquivos da mesma pasta.
+- **Pastas:** `app/` tem as rotas (uma área por perfil: `admin/`, depois `client/` e `technician/`), `components/` tem os componentes separados por domínio (`ui/` para os primitivos do design system, `dashboard/` para a estrutura dos painéis, `tickets/` e os demais domínios), `data/` tem o acesso a dados e `lib/` tem funções puras usadas no servidor e no cliente.
 - **Design system:** cores, tamanhos de fonte, pesos, raios de borda e sombras ficam em [`app/theme.css`](app/theme.css). As escalas padrão do Tailwind para esses tokens estão desativadas, então use apenas os tokens do design (ex.: `bg-blue-base`, `text-gray-200`, `text-md`, `rounded-md`, `shadow-md`).
 - **Variantes:** use o `tv` de [`lib/variants.ts`](lib/variants.ts), que já conhece os tamanhos de fonte do design (ex.: `text-xxs`). O ESLint bloqueia importar o `tv` direto de `tailwind-variants`.
 - **Ícones:** importe de [`components/icons.ts`](components/icons.ts), que reúne apenas os ícones do design. O ESLint bloqueia imports diretos de `lucide-react`.

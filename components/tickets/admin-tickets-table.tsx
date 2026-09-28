@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { PenLine } from "@/components/icons";
-import { TicketStatusTag } from "@/components/ticket-status-tag";
+import { TicketStatusTag } from "@/components/tickets/ticket-status-tag";
 import { buttonVariants } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import {

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
-import { AdminTicketsTable } from "@/components/admin-tickets-table";
-import { PageHeader } from "@/components/page-header";
+import { PageHeader } from "@/components/dashboard/page-header";
+import { AdminTicketsTable } from "@/components/tickets/admin-tickets-table";
 import { getTickets } from "@/data/tickets";
 
 export const metadata: Metadata = {

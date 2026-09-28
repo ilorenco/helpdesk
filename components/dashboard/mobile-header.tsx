@@ -3,10 +3,10 @@
 import { Popover } from "@base-ui/react/popover";
 import { useRef, useState, type MouseEvent, type ReactNode } from "react";
 
+import { MobileUserMenu, type DashboardUser } from "@/components/dashboard/user-menu";
 import { Menu, X } from "@/components/icons";
 import { Logo } from "@/components/logo";
 import { dropdownOffset, dropdownVariants } from "@/components/ui/dropdown";
-import { MobileUserMenu, type DashboardUser } from "@/components/user-menu";
 
 const dropdown = dropdownVariants();
 

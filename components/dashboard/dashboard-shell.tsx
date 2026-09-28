@@ -1,10 +1,10 @@
 import type { Route } from "next";
 import type { ReactNode } from "react";
 
+import { MobileHeader } from "@/components/dashboard/mobile-header";
+import { NavLink } from "@/components/dashboard/nav-link";
+import { UserMenu, type DashboardUser } from "@/components/dashboard/user-menu";
 import { Logo } from "@/components/logo";
-import { MobileHeader } from "@/components/mobile-header";
-import { NavLink } from "@/components/nav-link";
-import { UserMenu, type DashboardUser } from "@/components/user-menu";
 
 export type NavItem = {
     href: Route;

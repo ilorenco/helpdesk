@@ -1,4 +1,4 @@
-import { getTicketStatusIcon } from "@/components/ticket-status-tag";
+import { getTicketStatusIcon } from "@/components/tickets/ticket-status-tag";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ticketStatuses, ticketStatusLabels, type TicketStatus } from "@/lib/tickets";

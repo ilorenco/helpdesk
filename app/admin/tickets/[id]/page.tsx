@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { PageHeader } from "@/components/page-header";
+import { PageHeader } from "@/components/dashboard/page-header";
 import {
     TicketDetailsColumns,
     TicketInfoCard,
     TicketSummaryCard,
-} from "@/components/ticket-details";
-import { TicketStatusActions } from "@/components/ticket-status-actions";
+} from "@/components/tickets/ticket-details";
+import { TicketStatusActions } from "@/components/tickets/ticket-status-actions";
 import { getTicket } from "@/data/tickets";
 import { parseTicketId } from "@/lib/tickets";
 
