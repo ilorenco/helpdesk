@@ -8,12 +8,12 @@ export const ticketStatusLabels: Record<TicketStatus, string> = {
     closed: "Encerrado",
 };
 
-export type Person = {
+type Person = {
     name: string;
     email: string;
 };
 
-export type PricedItem = {
+type PricedItem = {
     id: number;
     name: string;
     priceInCents: number;
