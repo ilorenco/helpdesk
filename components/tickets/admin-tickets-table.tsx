@@ -8,6 +8,7 @@ import {
     Table,
     TableBody,
     TableCell,
+    TableEmptyRow,
     TableHead,
     TableHeader,
     TableRow,
@@ -56,14 +57,7 @@ export function AdminTicketsTable({ tickets }: AdminTicketsTableProps) {
                     <AdminTicketRow key={ticket.id} ticket={ticket} />
                 ))}
                 {tickets.length === 0 && (
-                    <TableRow>
-                        <TableCell
-                            colSpan={columnCount}
-                            className="text-center text-sm text-gray-400"
-                        >
-                            Nenhum chamado encontrado
-                        </TableCell>
-                    </TableRow>
+                    <TableEmptyRow colSpan={columnCount}>Nenhum chamado encontrado</TableEmptyRow>
                 )}
             </TableBody>
         </Table>

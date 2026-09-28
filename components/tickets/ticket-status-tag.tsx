@@ -20,7 +20,7 @@ type TicketStatusTagProps = {
 
 export function TicketStatusTag({ status, compactOnMobile }: TicketStatusTagProps) {
     return (
-        <TagStatus variant={tagVariants[status]} compactOnMobile={compactOnMobile}>
+        <TagStatus variant={tagVariants[status]} layout={compactOnMobile ? "iconOnMobile" : "full"}>
             {ticketStatusLabels[status]}
         </TagStatus>
     );

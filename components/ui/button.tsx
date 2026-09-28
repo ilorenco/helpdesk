@@ -17,6 +17,9 @@ export const buttonVariants = tv({
         },
         iconOnly: {
             true: "aspect-square",
+            // Icon only on mobile: wrap the label in a <span>, which stays available to screen
+            // readers, and it shows next to the icon from tablets up
+            mobile: "max-md:aspect-square max-md:px-0 max-md:[&>span]:sr-only",
         },
     },
     compoundVariants: [

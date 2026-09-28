@@ -8,7 +8,7 @@ const andreCosta = { name: "André Costa", email: "andre.costa@test.com" };
 const carlosSilva = { name: "Carlos Silva", email: "carlos.silva@test.com" };
 const anaOliveira = { name: "Ana Oliveira", email: "ana.oliveira@test.com" };
 
-const softwareSupport = { id: 4, name: "Suporte de Software", priceInCents: 8000 };
+const softwareSupport = { id: 4, name: "Suporte de Software", priceInCents: 20000 };
 
 // Sample data from the design until the database exists
 const tickets: Ticket[] = [
@@ -57,7 +57,7 @@ const tickets: Ticket[] = [
         title: "Instalação de software de gestão",
         description: "Preciso instalar o software de gestão financeira em dois computadores.",
         service: softwareSupport,
-        additionalServices: [{ id: 3, name: "Configuração de licenças", priceInCents: 12000 }],
+        additionalServices: [],
         client: { name: "Julia Maria", email: "julia.maria@test.com" },
         technician: anaOliveira,
         status: "closed",

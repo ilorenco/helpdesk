@@ -1,3 +1,5 @@
+import type { Service } from "@/lib/services";
+
 export const ticketStatuses = ["open", "in_progress", "closed"] as const;
 
 export type TicketStatus = (typeof ticketStatuses)[number];
@@ -13,7 +15,8 @@ type Person = {
     email: string;
 };
 
-type PricedItem = {
+// An additional service a technician adds to one ticket, with the price charged for it
+type AdditionalService = {
     id: number;
     name: string;
     priceInCents: number;
@@ -23,8 +26,9 @@ export type Ticket = {
     id: number;
     title: string;
     description: string;
-    service: PricedItem;
-    additionalServices: PricedItem[];
+    // The catalog service the client picked
+    service: Pick<Service, "id" | "name" | "priceInCents">;
+    additionalServices: AdditionalService[];
     client: Person;
     technician: Person;
     status: TicketStatus;

@@ -7,6 +7,7 @@ import { tv } from "@/lib/variants";
 const tagStatusVariants = tv({
     slots: {
         root: "inline-flex items-center rounded-full p-1.5 [&_svg]:size-4 [&_svg]:shrink-0",
+        icon: "",
         label: "px-1.5 text-xs leading-4 font-bold whitespace-nowrap",
     },
     variants: {
@@ -16,10 +17,18 @@ const tagStatusVariants = tv({
             success: { root: "bg-feedback-done/20 text-feedback-done" },
             danger: { root: "bg-feedback-danger/20 text-feedback-danger" },
         },
-        // Shows only the icon on small screens; the label stays available to screen readers
-        compactOnMobile: {
-            true: { label: "max-md:sr-only" },
+        // The label hidden visually stays available to screen readers
+        layout: {
+            // Icon and label at every size
+            full: {},
+            // Only the icon below tablets (md), icon and label from there up
+            iconOnMobile: { label: "max-md:sr-only" },
+            // Only the icon below tablets (md), only the label from there up
+            iconOnMobileLabelFromTablet: { label: "max-md:sr-only", icon: "md:hidden" },
         },
+    },
+    defaultVariants: {
+        layout: "full",
     },
 });
 
@@ -32,19 +41,20 @@ export const tagStatusIcons: Record<TagStatusVariant, LucideIcon> = {
     danger: CircleHelp,
 };
 
-type TagStatusProps = {
+type TagStatusProps = Omit<VariantProps<typeof tagStatusVariants>, "variant"> & {
     variant: TagStatusVariant;
-    compactOnMobile?: boolean;
+    // Replaces the variant's default icon
+    icon?: LucideIcon;
     children: ReactNode;
 };
 
-export function TagStatus({ variant, compactOnMobile, children }: TagStatusProps) {
-    const Icon = tagStatusIcons[variant];
-    const styles = tagStatusVariants({ variant, compactOnMobile });
+export function TagStatus({ variant, icon, layout, children }: TagStatusProps) {
+    const Icon = icon ?? tagStatusIcons[variant];
+    const styles = tagStatusVariants({ variant, layout });
 
     return (
         <span className={styles.root()}>
-            <Icon />
+            <Icon className={styles.icon()} />
             <span className={styles.label()}>{children}</span>
         </span>
     );
