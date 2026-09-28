@@ -16,6 +16,22 @@ Responsive ticket management application (helpdesk) with three role-based dashbo
 - **Technician**: works on the tickets assigned to them.
 - **Client**: opens tickets and follows their progress.
 
+## Project context
+
+- The layout comes from the Figma file linked in `README.md`, and the business rules below come from the statement of the Rocketseat Full-Stack final challenge ("Gestão de chamados"). The statement's tech stack (Express, Vite, a separate API) is deliberately not followed.
+- The backend (database, authentication, Server Actions) will live in this Next.js app. The frontend is being built first against sample data in `data/`, so pages and components must not need changes when the database arrives: keep `data/` functions async and returning raw typed values (`Date`, amounts in cents), and plan writes as Server Actions that call `data/`. The ORM, database and auth library are still to be chosen.
+
+## Business rules
+
+- **Ticket statuses**: only "Aberto" (`open`), "Em atendimento" (`in_progress`) and "Encerrado" (`closed`). The admin can set any status, including reopening. The assigned technician only moves forward: starting a ticket sets "Em atendimento" and closing it sets "Encerrado". The client can't change anything on a ticket after creating it.
+- **Tickets**: a client creates tickets, choosing a service category and an available technician as the one responsible. Every ticket has at least one service, and the assigned technician can add more. A ticket shows the price of the requested service, the price of each additional service and the total.
+- **Services**: only the admin creates, edits and deactivates them, and each one has a price. Deactivating is a soft delete: the service stops appearing when creating tickets but stays on existing ones.
+- **Admin**: creates, lists and edits technician accounts (with a temporary password the technician changes after the first login; technicians are never deleted), lists, edits and deletes client accounts, and lists all tickets.
+- **Technician**: edits their own profile, including a photo, lists the tickets assigned to them and adds services to them. Can't create tickets or manage client accounts. New technicians default to 08:00–12:00 and 14:00–18:00, stored as a list of hours (`["08:00", "09:00", "10:00", "11:00", "14:00", "15:00", "16:00", "17:00"]`).
+- **Client**: creates, edits and deletes their own account, including a photo, and sees the history of their tickets. Deleting a client account, by the client or the admin, also deletes all of its tickets.
+- **Access**: every screen except sign-in and sign-up requires authentication, and each role only reaches its own area and data.
+- **Sample data** (in `data/` as each screen is built, and later the database seed): one admin; three technicians working 08–12 and 14–18, 10–14 and 16–20, and 12–16 and 18–22; at least five services (e.g. software installation, hardware installation, virus removal, printer support, backup and data recovery).
+
 ## Stack
 
 - Next.js 16 (App Router, `app/` directory) with React 19
@@ -49,6 +65,7 @@ Responsive ticket management application (helpdesk) with three role-based dashbo
 - Border radius uses the design system scale in `app/theme.css`: `rounded-sm` (5px: buttons, tags, menus), `rounded-md` (10px: cards, tables, modals), `rounded-lg` (20px: content panels), plus `rounded-full` for avatars and status tags. Tailwind's default radius scale is disabled.
 - The only shadow is `shadow-md` (dropdowns) from `app/theme.css`; Tailwind's default shadow scales (`shadow`, `inset-shadow`, `drop-shadow`, `text-shadow`) are disabled.
 - Build menus, popovers, dialogs, selects and similar interactive primitives with Base UI (`@base-ui/react`) and style them with Tailwind; don't hand-roll focus management, keyboard navigation or positioning. Its docs ship with the package in `node_modules/@base-ui/react/docs/`. Dropdown styles are shared in `components/ui/dropdown.ts`.
+- Every page that reads data gets a `loading.tsx` with a skeleton that mirrors its layout, built from `Skeleton` (`@/components/ui/skeleton`) plus a visually hidden `role="status"` message. Keep each skeleton in the same file as the component it mirrors (e.g. `TicketInfoCardSkeleton` in `components/ticket-details.tsx`) so they change together. A `loading.tsx` also wraps every nested route, so when a page has child routes, put the page and its `loading.tsx` in a route group (e.g. `app/admin/tickets/(list)/`) so its skeleton doesn't show on the children. Actions that write data show their pending state (disabled button, "Salvando…") with the pending flag `useActionState` returns as its third value (`const [state, formAction, isPending] = useActionState(...)`).
 - Each role has its own route segment (`app/admin`, later `app/client` and `app/technician`), whose layout renders `DashboardShell` with that role's menu.
 - Each page exports `metadata` with only its own name as `title` (e.g. `title: "Chamados"`); the root layout's `title.template` renders it as "Chamados | Helpdesk".
 - Build component variants with `tv` from `@/lib/variants`, which teaches the class merger the design system sizes (without it, `text-xxs` is read as a color and dropped). ESLint blocks importing `tv` from `tailwind-variants` directly.
@@ -60,6 +77,7 @@ Responsive ticket management application (helpdesk) with three role-based dashbo
 - Name files and folders in kebab-case (`ticket-card.tsx`); the exported component stays PascalCase (`TicketCard`).
 - Write identifiers in English, including domain terms (`ticket`, `technician`, `client`) and route segments, since they become URLs (`app/tickets` → `/tickets`); user-facing text is in Portuguese (pt-BR).
 - Use names that say what a value is within its scope: `assignedTickets` over `data` or `result`, `isTicketClosed` over `flag`. Avoid vague names like `data`, `temp`, or `x`.
+- Don't reinvent the wheel: before hand-rolling a solution to a well-known problem (dates, validation, forms, accessible menus and dialogs, etc.), check whether the platform (Web APIs, `Intl`, React, Next.js) or an established library already solves it. Prefer the platform when it's enough (`Intl` for dates and currency), then a mature library (Base UI for interactive primitives, Zod for validation, date-fns for date math). If you still write it by hand, say why.
 - Keep functions and components focused on one responsibility. Extract a block when it has a clear purpose and earns a name, not before, and don't add abstractions or options for hypothetical future needs.
 - Keep logic out of the JSX, so the returned markup reads as a composition of tags: compute derived values above the `return`, and move them to `lib/` or a hook when they're domain rules, reused, or long. Screens hold only their data, state, handlers, and JSX. Simple conditionals and `.map` stay inline.
 - Put data access in `data/` (e.g. `@/data/tickets`), the Data Access Layer: each file starts with `import "server-only"`, performs the authorization checks, and is the only place that touches the database and secret environment variables.
