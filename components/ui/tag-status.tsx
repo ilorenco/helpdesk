@@ -25,7 +25,7 @@ const tagStatusVariants = tv({
 
 type TagStatusVariant = NonNullable<VariantProps<typeof tagStatusVariants>["variant"]>;
 
-const tagStatusIcons: Record<TagStatusVariant, LucideIcon> = {
+export const tagStatusIcons: Record<TagStatusVariant, LucideIcon> = {
     new: CircleHelp,
     info: Clock2,
     success: CircleCheckBig,

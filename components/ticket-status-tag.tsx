@@ -1,11 +1,17 @@
-import { TagStatus } from "@/components/ui/tag-status";
-import type { TicketStatus } from "@/lib/tickets";
+import type { LucideIcon } from "@/components/icons";
+import { TagStatus, tagStatusIcons } from "@/components/ui/tag-status";
+import { ticketStatusLabels, type TicketStatus } from "@/lib/tickets";
 
-const statusTags = {
-    open: { variant: "new", label: "Aberto" },
-    in_progress: { variant: "info", label: "Em atendimento" },
-    closed: { variant: "success", label: "Encerrado" },
-} as const satisfies Record<TicketStatus, { variant: string; label: string }>;
+const tagVariants = {
+    open: "new",
+    in_progress: "info",
+    closed: "success",
+} as const satisfies Record<TicketStatus, string>;
+
+// The icon each status shows in its tag, so other controls for a status can reuse it
+export function getTicketStatusIcon(status: TicketStatus): LucideIcon {
+    return tagStatusIcons[tagVariants[status]];
+}
 
 type TicketStatusTagProps = {
     status: TicketStatus;
@@ -13,11 +19,9 @@ type TicketStatusTagProps = {
 };
 
 export function TicketStatusTag({ status, compactOnMobile }: TicketStatusTagProps) {
-    const { variant, label } = statusTags[status];
-
     return (
-        <TagStatus variant={variant} compactOnMobile={compactOnMobile}>
-            {label}
+        <TagStatus variant={tagVariants[status]} compactOnMobile={compactOnMobile}>
+            {ticketStatusLabels[status]}
         </TagStatus>
     );
 }
