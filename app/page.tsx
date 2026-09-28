@@ -1,7 +1,7 @@
+import { redirect } from "next/navigation";
+
+// Until authentication exists, the entry point is the sign-in screen; afterwards it will send
+// each signed-in user to their role's area
 export default function Home() {
-    return (
-        <main className="flex flex-1 items-center justify-center p-6">
-            <h1 className="text-xl">Helpdesk</h1>
-        </main>
-    );
+    redirect("/sign-in");
 }
